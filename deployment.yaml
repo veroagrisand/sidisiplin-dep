@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sidisiplin-app
+  labels:
+    app: sidisiplin-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sidisiplin-app
+  template:
+    metadata:
+      labels:
+        app: sidisiplin-app
+    spec:
+      containers:
+      - name: sidisiplin-app
+        image: 013527016809.dkr.ecr.us-east-1.amazonaws.com/sidisiplin:latest 
+        ports:
+        - containerPort: 80
+        env:
+        - name: DB_HOST
+          value: "db"
+        - name: DB_USER
+          value: "user"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "db_seal_sumatra"
